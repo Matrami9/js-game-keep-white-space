@@ -1,9 +1,8 @@
 name: Deploy Second Game
-
 on:
   push:
-    branches: [ master ] # Attention, ta branche s'appelle 'master' sur l'image
-
+    branches: 
+      -master
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,14 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Pas besoin de "npm install" si tu n'as pas de package.json
-      # On vérifie juste que Docker arrive à construire l'image
       - name: Build Docker Image
         run: docker build -t keep-white-space:latest .
 
-      # Déploiement direct sur GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: . # On déploie la racine car index.html est ici
-          branch: gh-pages
