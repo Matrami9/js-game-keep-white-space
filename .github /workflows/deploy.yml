@@ -1,8 +1,7 @@
 name: Deploy Second Game
 on:
   push:
-    branches: 
-      -master
+    branches: [master]
 jobs:
   deploy:
     runs-on: ubuntu-latest
